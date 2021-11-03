@@ -1,7 +1,7 @@
 function consultar() {
 
     $.ajax({
-        url: 'http://129.151.115.61:8080/api/Reservation/all',
+        url: 'http://144.22.225.110:8080/api/Reservation/all',
         type: 'GET',
         dataType: 'JSON',
 
@@ -12,7 +12,7 @@ function consultar() {
             $("#resultado").empty();
             for (i = 0; i < respuesta.length; i++) {
                 $("#resultado").append("<tr>");
-                $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].idReservation+ "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
+                $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].idReservation + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
                 $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].startDate + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
                 $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].devolutionDate + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
                 $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].status + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
@@ -35,49 +35,49 @@ function consultar() {
 function registrar() {
 
     let var2 = {
-        startDate:$("#startDate").val(),
-        devolutionDate:$("#devolutionDate").val(),
-        status:$("#status").val()
-        };
-      
-        $.ajax({
-        type:'POST',
+        startDate: $("#startDate").val(),
+        devolutionDate: $("#devolutionDate").val(),
+        status: $("#status").val()
+    };
+
+    $.ajax({
+        type: 'POST',
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        
-        url:"http://129.151.115.61:8080/api/Reservation/save",
-       
-        
-        success:function(response) {
-                console.log(response);
+
+        url: "http://144.22.225.110:8080/api/Reservation/save",
+
+
+        success: function(response) {
+            console.log(response);
             console.log("Se guardo correctamente");
             alert("Se guardo correctamente");
             window.location.reload()
-    
+
         },
-        
+
         error: function(jqXHR, textStatus, errorThrown) {
-              window.location.reload()
+            window.location.reload()
             alert("No se guardo correctamente");
-    
-    
+
+
         }
-        });
+    });
 
 }
 
 function editar() {
     let myData = {
         idReservation: $("#idReservation").val(),
-        startDate:$("#startDate").val(),
-        devolutionDate:$("#devolutionDate").val(),
-        status:$("#status").val()
+        startDate: $("#startDate").val(),
+        devolutionDate: $("#devolutionDate").val(),
+        status: $("#status").val()
     }
     let dataTosend = JSON.stringify(myData);
     $.ajax({
 
-        url: "http://129.151.115.61:8080/api/Reservation/update",
+        url: "http://144.22.225.110:8080/api/Reservation/update",
         type: "PUT",
         data: dataTosend,
         contentType: "application/JSON",
@@ -107,7 +107,7 @@ function eliminar(id) {
     }
     let dataToSend = JSON.stringify(myData)
     $.ajax({
-        url: "http://129.151.115.61:8080/api/Reservation/" + id.val(),
+        url: "http://144.22.225.110:8080/api/Reservation/" + id.val(),
         type: 'DELETE',
         //data: dataToSend,
         //contentType: "application/JSON",

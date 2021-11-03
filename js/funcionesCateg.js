@@ -1,16 +1,16 @@
 function consultar() {
 
     $.ajax({
-        url: "http://129.151.115.61:8080/api/Category/all",
+        url: "http://144.22.225.110:8080/api/Category/all",
         type: "GET",
         dataType: "JSON",
 
         //success - propiedad
         //function(json) - funcion anonima
-        success:function(respuesta){
+        success: function(respuesta) {
             // capa div - resultado
             $("#resultado").empty();
-            for(i=0;i<respuesta.length;i++){
+            for (i = 0; i < respuesta.length; i++) {
 
                 $("#resultado").append("<tr>");
                 $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].id + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
@@ -33,36 +33,38 @@ function consultar() {
 }
 
 
-function registrar(){          
+function registrar() {
     let var2 = {
-        name:$("#name").val(),
-        description:$("#description").val()
-        };
-      
-        $.ajax({
-        type:'POST',
+        name: $("#name").val(),
+        description: $("#description").val()
+    };
+
+    $.ajax({
+        type: 'POST',
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        
-        url:"http://129.151.115.61:8080/api/Category/save",
-       
-        
-        success:function(response) {
-                console.log(response);
+
+        url: "http://144.22.225.110:8080/api/Category/save",
+
+
+        success: function(response) {
+            console.log(response);
             console.log("Se guardo correctamente");
             alert("Se guardo correctamente");
             window.location.reload()
-    
+
         },
-        
+
         error: function(jqXHR, textStatus, errorThrown) {
-              window.location.reload()
+            window.location.reload()
             alert("No se guardo correctamente");
-    
-    
+        },
+        complete: function(xhr, status) {
+            alert('Petición realizada' + xhr.status);
+            limpiarFormulario();
         }
-        });
+    });
 
 }
 
@@ -75,7 +77,7 @@ function editar() {
     let dataTosend = JSON.stringify(myData);
     $.ajax({
 
-        url: "http://129.151.115.61:8080/api/Category/update",
+        url: "http://144.22.225.110:8080/api/Category/update",
         type: "PUT",
         data: dataTosend,
         contentType: "application/JSON",
@@ -92,7 +94,7 @@ function editar() {
         },
         complete: function(xhr, status) {
             alert('Petición realizada' + xhr.status);
-            //limpiarFormulario();
+            limpiarFormulario();
         }
     });
 }
@@ -104,7 +106,7 @@ function eliminar(id) {
     }
     let dataToSend = JSON.stringify(myData)
     $.ajax({
-        url: "http://129.151.115.61:8080/api/Category/" + id.val(),
+        url: "http://144.22.225.110:8080/api/Category/" + id.val(),
         type: 'DELETE',
         //data: dataToSend,
         //contentType: "application/JSON",
@@ -126,36 +128,13 @@ function eliminar(id) {
     });
 
 }
-/*
-function buscarPorID(id) {
-    $.ajax({
-        url: "http://129.151.115.61:8080/api/Category/" + id.val(),
-        dataType: "JSON",
-        type: "GET",
-        success: function(respuesta) {
-            $("#resultado").empty();
-            $("#resultado").append("<tr>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[0].id + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[0].name + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[0].description+ "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("</tr>");
 
-            //$("#resultado").append( json.items[0].room+"&nbsp;&nbsp;&nbsp;&nbsp;"
-            //+json.items[0].stars+"&nbsp;&nbsp;&nbsp;&nbsp;"
-            //+json.items[0].category_id+"&nbsp;&nbsp;&nbsp;"
-            //+json.items[0].description);
-            console.log(json);
-            console.log("id", id.val())
-            debugger
-        },
-        error: function(xhr, status) {
-            alert('ha sucedido un problema' + xhr.status);
-        },
-        complete: function(xhr, status) {
-            alert('Petición realizada ' + xhr.status);
-        }
-    });
-}**/
+
+function limpiarFormulario() {
+    $("#id").val("");
+    $("#name").val("");
+    $("#description").val("");
+}
 
 function soloLectura() {
     $("#id").prop("readonly", false);

@@ -47,11 +47,17 @@
                     <div class="card-body">
                         <h5 class="card-title">HABITACIONES</h5>
                         <div class="form-group">
+                            <!--Aqui estamos creando un formulario-->
+                            <!-- la etiqueta input sirve para crear objetos en la cual vamos a tener entrada de datos, 
+                            le damos a cada uno de los elementos un id-->
                             <input type="text" class="form-control mt-2" id="id" ondblclick="soloLectura()" placeholder="ID">
                             <input type="text" class="form-control mt-2" id="name" placeholder="NAME">
                             <input type="text" class="form-control mt-2" id="hotel" placeholder="HOTEL">
                             <input type="text" class="form-control mt-2" id="stars" placeholder="STARS">
                             <input type="text" class="form-control mt-2" id="description" placeholder="DESCRIPTION">
+                            <!--
+                            <label id="label">Seleccionar Categoria</label> 
+                            <select id="select-category"></select>-->
                         </div>
                         <div class="row mt-5">
                             <div class="col-12">
@@ -92,6 +98,7 @@
                                 <th class="titlestable" scope="col">Hotel</th>
                                 <th class="titlestable" scope="col">Stars</th>
                                 <th class="titlestable" scope="col">Description</th>
+                                <!--<th class="titlestable" scope="col">Info Categoria</th>-->
                             </tr>
                         </thead>
                         <tbody id="resultado">

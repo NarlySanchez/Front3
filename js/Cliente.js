@@ -1,7 +1,7 @@
 function consultar() {
 
     $.ajax({
-        url: 'http://129.151.115.61:8080/api/Client/all',
+        url: 'http://144.22.225.110:8080/api/Client/all',
         type: 'GET',
         dataType: 'JSON',
 
@@ -36,52 +36,52 @@ function consultar() {
 function registrar() {
 
     let var2 = {
-        email:$("#email").val(),
-        password:$("#password").val(),
-        name:$("#name").val(),
-        age:$("#age").val() 
+        email: $("#email").val(),
+        password: $("#password").val(),
+        name: $("#name").val(),
+        age: $("#age").val()
 
-        };
-      
-        $.ajax({
-        type:'POST',
+    };
+
+    $.ajax({
+        type: 'POST',
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        
-        url:"http://129.151.115.61:8080/api/Client/save",
-       
-        
-        success:function(response) {
-                console.log(response);
+
+        url: "http://144.22.225.110:8080/api/Client/save",
+
+
+        success: function(response) {
+            console.log(response);
             console.log("Se guardo correctamente");
             alert("Se guardo correctamente");
             window.location.reload()
-    
+
         },
-        
+
         error: function(jqXHR, textStatus, errorThrown) {
-              window.location.reload()
+            window.location.reload()
             alert("No se guardo correctamente");
-    
-    
+
+
         }
-        });
-        
+    });
+
 }
 
 function editar() {
     let myData = {
         idClient: $("#idClient").val(),
-        email:$("#email").val(),
-        password:$("#password").val(),
-        name:$("#name").val(),
-        age:$("#age").val() 
+        email: $("#email").val(),
+        password: $("#password").val(),
+        name: $("#name").val(),
+        age: $("#age").val()
     }
     let dataTosend = JSON.stringify(myData);
     $.ajax({
 
-        url: "http://129.151.115.61:8080/api/Client/update",
+        url: "http://144.22.225.110:8080/api/Client/update",
         type: "PUT",
         data: dataTosend,
         contentType: "application/JSON",
@@ -112,7 +112,7 @@ function eliminar(id) {
     }
     let dataToSend = JSON.stringify(myData)
     $.ajax({
-        url: "http://129.151.115.61:8080/api/Client/" + id.val(),
+        url: "http://144.22.225.110:8080/api/Client/" + id.val(),
         type: 'DELETE',
         //data: dataToSend,
         //contentType: "application/JSON",
@@ -134,47 +134,3 @@ function eliminar(id) {
     });
 
 }
-
-/**
-function buscarPorID(id) {
-    $.ajax({
-        url: "http://129.151.115.61:8080/api/Client/" + id.val(),
-        dataType: 'json',
-        type: 'GET',
-        success: function(respuesta) {
-            $("#resultado").empty();
-            $("#resultado").append("<tr>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].idClient + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].name + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].email + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("<td>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + respuesta[i].age + "&nbsp;&nbsp;&nbsp;&nbsp;" + "</td>");
-            $("#resultado").append("</tr>");
-
-            //$("#resultado").append( json.items[0].room+"&nbsp;&nbsp;&nbsp;&nbsp;"
-            //+json.items[0].stars+"&nbsp;&nbsp;&nbsp;&nbsp;"
-            //+json.items[0].category_id+"&nbsp;&nbsp;&nbsp;"
-            //+json.items[0].description);
-            console.log(respuesta);
-            console.log("idClient", id.val())
-            debugger
-        },
-        error: function(xhr, status) {
-            alert('ha sucedido un problema' + xhr.status);
-        },
-        complete: function(xhr, status) {
-            alert('Petición realizada ' + xhr.status);
-        }
-    });
-}*/
-
-/** 
-function limpiarFormulario() {
-    $("#room").val("");
-    $("#stars").val("");
-    $("#category_id").val("");
-    $("#description").val("");
-}
-
-function soloLectura() {
-    $("#id").prop("readonly", false);
-}*/
